@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Panel</title>
+</head>
+<body>
+  <h1>Update Live Score</h1>
+  <input id="teamName" placeholder="Team Name" />
+  <input id="score" placeholder="Score (e.g. 45/2 (5.4))" />
+  <input id="batsman" placeholder="Batsman List" />
+  <input id="bowler" placeholder="Current Bowler" />
+  <button onclick="updateScore()">Update</button>
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
+  <script>
+    function updateScore() {
+      const db = firebase.database();
+      db.ref("liveMatch").set({
+        team: document.getElementById("teamName").value,
+        score: document.getElementById("score").value,
+        batsmen: document.getElementById("batsman").value,
+        bowler: document.getElementById("bowler").value
+      });
+    }
+  </script>
+</body>
+</html>
